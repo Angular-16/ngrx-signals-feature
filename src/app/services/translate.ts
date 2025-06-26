@@ -1,8 +1,7 @@
-import { ENGLISH_DICTIONARY, SPANISH_DICTIONARY } from "../data/dictionaries";
+import { ENGLISH_DICTIONARY, SPANISH_DICTIONARY } from '../data/dictionaries';
 
 export function translate(key: string, language: string): string {
-    if (language.toLowerCase() === 'sp')
-        return SPANISH_DICTIONARY[key]
-    else
-        return ENGLISH_DICTIONARY[key];
+  return language.toLowerCase() === 'sp'
+    ? SPANISH_DICTIONARY[key]
+    : ENGLISH_DICTIONARY[key];
 }

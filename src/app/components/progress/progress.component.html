@@ -1,6 +1,10 @@
 <div class="bar">
-    <div class="fill" [style.width.%]="ratio()*100"></div>
+    <div
+      class="fill"
+      [style.width.%]="ratio() * 100"
+    ></div>
 </div>
+
 <div class="value">
-    {{value()}} / {{max()}}
+    {{ value()}} / {{ max() }}
 </div>

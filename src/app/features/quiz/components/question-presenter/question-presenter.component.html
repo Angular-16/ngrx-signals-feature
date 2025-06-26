@@ -1,4 +1,5 @@
 @let question = store.currentQuestion();
+
 <h1>
   What do you get when you Add @for (color of question.caption; track $index)
   { @if($index > 0) { @if ($last) { and } @else { , } }

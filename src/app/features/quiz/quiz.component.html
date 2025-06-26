@@ -1,6 +1,9 @@
 <app-toolbar caption="Colors Quiz" icon="palette">
-    <app-flag of="en" matTooltip="Change Language" 
-        />
+    <app-flag
+        [of]="appStore.selectedLanguage()"
+        matTooltip="Change Language"
+        (click)="appStore.changeLanguage()"
+    />
     <button mat-icon-button matTooltip="Reset Quiz"
         (click)="store.reset()">
         <mat-icon>restart_alt</mat-icon>
@@ -11,10 +14,12 @@
 </app-toolbar>
 <div class="main">
     @if(store.isDone()) {
-        <app-done/>
+        <app-done />
     } @else {
-        <app-progress [value]="store.currentQuestionIndex()"
-            [max]="store.questionsCount()"/>
-        <app-question-presenter/>
+        <app-progress
+          [value]="store.currentQuestionIndex()"
+          [max]="store.questionsCount()"
+        />
+        <app-question-presenter />
     }
 </div>
