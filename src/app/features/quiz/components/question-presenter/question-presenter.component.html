@@ -1,18 +1,25 @@
-@let question = store.currentQuestion();
-
 <h1>
-  What do you get when you Add @for (color of question.caption; track $index)
-  { @if($index > 0) { @if ($last) { and } @else { , } }
+  {{ store.translatedTitle() }}
 
-  {{ color | colorName }}
-  <span class="color-item" [style.background]="color"></span>
+  @for (color of store.captionColors(); track $index)
+  {
+    @if($index > 0) {
+      @if ($last) {
+        and
+      } @else {
+        ,
+      }
+    }
+
+    {{ color.name }}
+    <span class="color-item" [style.background]="color.key"></span>
   } ?
 </h1>
 <div class="answers">
-  @for(answer of question.answers; track $index) {
+  @for(answer of store.answerColors(); track $index) {
   <div class="answer" (click)="store.addAnswer($index)">
-    <div class="thumbnail" [style.background]="answer"></div>
-    <div class="caption">{{ answer | colorName }}</div>
+    <div class="thumbnail" [style.background]="answer.key"></div>
+    <div class="caption">{{ answer.name }}</div>
   </div>
   }
 </div>
