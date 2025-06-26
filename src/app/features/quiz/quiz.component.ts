@@ -20,7 +20,6 @@ import { AppStore } from '../../store/app.store';
   ],
   templateUrl: './quiz.component.html',
   styleUrl: './quiz.component.scss',
-  providers: [QuizStore],
 })
 export default class QuizPageComponent {
   readonly appStore = inject(AppStore);
