@@ -16,3 +16,12 @@ export function changeLanguageUpdater(
     };
   };
 }
+
+export function resetLanguagesUpdater(
+  languages: string[]
+): PartialStateUpdater<AppSlice> {
+  return (_) => ({
+    selectedLanguage: languages[0],
+    possibleLanguages: languages,
+  });
+}

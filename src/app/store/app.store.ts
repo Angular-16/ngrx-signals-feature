@@ -9,7 +9,7 @@ import {
 import { initialState } from './app.slice';
 import { computed, inject } from '@angular/core';
 import { DICTIONARIES_TOKEN } from '../tokens/dictionaries.token';
-import { changeLanguageUpdater } from './app.updater';
+import { changeLanguageUpdater, resetLanguagesUpdater } from './app.updater';
 import { getDictionary } from './app.helper';
 
 export const AppStore = signalStore(
@@ -26,18 +26,14 @@ export const AppStore = signalStore(
 
     return {
       changeLanguage: () => patchState(store, changeLanguageUpdater(languages)),
+      _resetLanguages: () =>
+        patchState(store, resetLanguagesUpdater(languages)),
     };
   }),
   withHooks((store) => ({
     // Инициализируем хранилище через Injection Token
     onInit: () => {
-      const dictionaries = inject(DICTIONARIES_TOKEN);
-      const languages = Object.keys(dictionaries);
-
-      patchState(store, {
-        selectedLanguage: languages[0],
-        possibleLanguages: languages,
-      });
+      store._resetLanguages();
     },
   }))
 );
